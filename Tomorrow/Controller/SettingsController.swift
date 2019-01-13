@@ -19,8 +19,7 @@ class SettingsController: Layout {
     let save = Button(title: "Save")
     
     // Settings
-    let savedHour = UserDefaults.standard.float(forKey: "reset")
-    var hour:Float = 20
+    let resetTime = UserDefaults.standard.float(forKey: "reset")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,20 +60,15 @@ class SettingsController: Layout {
     }
     
     func setSettings() {
-        if savedHour != 0.0 {
-            // Set local hour
-            self.hour = savedHour
-            
-            // Set resetInput value
-            self.resetInput.value = self.hour
-        }
+        // Set resetInput value
+        resetInput.value = resetTime
         
         // Set selected text
         setSelected()
     }
     
     func convertRegularTime(hour: Float) -> String {
-        let hour = Int(hour)
+        let hour = Int(round(hour))
         var regular:Int
         var ampm: String
         
@@ -90,17 +84,13 @@ class SettingsController: Layout {
     }
     
     @objc func handleResetChange() {
-        // Round and then set local hour
-        self.hour = round(resetInput.value)
-
         // Set selected text
         setSelected()
-
     }
     
     func setSelected() {
         // Get regular time (ex. 2pm)
-        let regular = convertRegularTime(hour: self.hour)
+        let regular = convertRegularTime(hour: resetInput.value)
         
         // Set selected text
         selected.text = "Selected time: \(regular)"
@@ -108,7 +98,7 @@ class SettingsController: Layout {
     
     @objc func handleSave() {
         // Save it to user default
-        UserDefaults.standard.set(resetInput.value, forKey: "reset")
+        UserDefaults.standard.set(round(resetInput.value), forKey: "reset")
         
         // Redirect home
         navigationController?.pushViewController(TasksController(), animated: true)

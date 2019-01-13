@@ -18,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Set default settings
+        let defaults = UserDefaults.standard
+        
+        // Default reset Time
+        let resetTime = defaults.float(forKey: "reset")
+        if resetTime == 0.0 { defaults.set(20.0, forKey: "reset") }
+        
         // Bypass storyboard
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

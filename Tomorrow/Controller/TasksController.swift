@@ -16,6 +16,9 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     let table = Table()
     var tasks = [Task]()
     let cellId = "taskCell"
+    
+    // Settings
+    let resetTime = UserDefaults.standard.float(forKey: "reset")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,25 +39,42 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     }
     
     func fetchTasks() {
-        // Sort by priority
-        let task:NSFetchRequest = Task.fetchRequest()
-        let order = NSSortDescriptor(key: #keyPath(Task.priority), ascending: false)
-        task.sortDescriptors = [order]
+        // The fetch request
+        let fetch:NSFetchRequest = Task.fetchRequest()
+        
+        // Sort by priority and date
+        let priority = NSSortDescriptor(key: #keyPath(Task.priority), ascending: false)
+        let date = NSSortDescriptor(key: #keyPath(Task.date), ascending: false)
+        fetch.sortDescriptors = [priority, date]
 
-        // Get tasks within 24 hour period
+        // Create and set calender object to their local time
         var calendar = Calendar.current
         calendar.timeZone = NSTimeZone.local
         
+        // Which hour are they on
+        let hours = calendar.component(.hour, from: Date())
+        
+        // Is it passed the reset time?
+        let tomorrow = Int(resetTime) <= hours
+        
+        // Beginning of today
         let today = calendar.startOfDay(for: Date())
-        guard let start = calendar.date(byAdding: .hour, value: 17, to: today) else { return }
-        guard let end = calendar.date(byAdding: .day, value: 1, to: start) else { return }
-
+        
+        // Whats added to start of day to get start time
+        let addition = tomorrow ? Int(resetTime) : Int((24 - resetTime) * -1)
+        
+        // Create a start date for query
+        guard let start = calendar.date(byAdding: .hour, value: addition, to: today) else { return }
+        
+        // All tasks after start time
         let datePredicate = NSPredicate(format: "date > %@", start as NSDate)
-        task.predicate = datePredicate
         
+        // Add time constraint to fetch request
+        fetch.predicate = datePredicate
         
+        // Fetch the tasks
         do {
-            self.tasks =  try Core.context.fetch(task)
+            self.tasks =  try Core.context.fetch(fetch)
         } catch {
             print(error.localizedDescription)
         }
