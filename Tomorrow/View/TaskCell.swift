@@ -37,7 +37,7 @@ class TaskCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
-        label.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -69).isActive = true
         label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         label.heightAnchor.constraint(equalToConstant: 70).isActive = true
         label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
