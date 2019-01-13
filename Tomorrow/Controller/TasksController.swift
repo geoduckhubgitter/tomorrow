@@ -91,14 +91,13 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         let task = tasks[row]
             
         cell.label.text = task.title
+        cell.setPriorityColor(priorityFloat: task.priority)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
-    
-    
 }
 
