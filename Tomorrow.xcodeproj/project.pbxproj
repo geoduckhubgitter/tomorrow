@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D512335721EBF6050077D134 /* Hsb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D512335621EBF6050077D134 /* Hsb.swift */; };
 		D538E40321E686AC00780799 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E40221E686AC00780799 /* AppDelegate.swift */; };
 		D538E40521E686AC00780799 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E40421E686AC00780799 /* TasksController.swift */; };
 		D538E40B21E686AC00780799 /* Tomorrow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D538E40921E686AC00780799 /* Tomorrow.xcdatamodeld */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D512335621EBF6050077D134 /* Hsb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hsb.swift; sourceTree = "<group>"; };
 		D538E3FF21E686AC00780799 /* Tomorrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tomorrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D538E40221E686AC00780799 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D538E40421E686AC00780799 /* TasksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				D538E41F21E6B8AF00780799 /* Hex.swift */,
 				D538E42121E6B8F400780799 /* Colors.swift */,
+				D512335621EBF6050077D134 /* Hsb.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				D538E40521E686AC00780799 /* TasksController.swift in Sources */,
 				D538E44D21E818ED00780799 /* TaskCell.swift in Sources */,
 				D538E42221E6B8F400780799 /* Colors.swift in Sources */,
+				D512335721EBF6050077D134 /* Hsb.swift in Sources */,
 				D538E44921E8037000780799 /* Range.swift in Sources */,
 				D538E42821E6BB3000780799 /* Task+CoreDataClass.swift in Sources */,
 				D538E42B21E6BB6A00780799 /* NewTaskController.swift in Sources */,
