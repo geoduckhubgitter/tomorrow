@@ -22,6 +22,8 @@ extension UIColor {
         static var dangerBorder: UIColor  { return UIColor.Hex(hex: "ebcccc") }
         static var dangerText: UIColor  { return UIColor.Hex(hex: "a94442") }
         static var dangerBackground: UIColor  { return UIColor.Hex(hex: "f2dede") }
+        static var success: UIColor  { return UIColor.Hex(hex: "11bf0e") }
+        static var successText: UIColor  { return UIColor.Hex(hex: "ffffff") }
     }
 }
 

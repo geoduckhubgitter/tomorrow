@@ -20,5 +20,5 @@ extension Task {
     @NSManaged public var date: NSDate
     @NSManaged public var title: String
     @NSManaged public var priority: Float
-
+    @NSManaged public var complete: Bool
 }

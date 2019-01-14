@@ -30,9 +30,11 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     
         // Tableview Settings
         table.register(TaskCell.self, forCellReuseIdentifier: cellId)
+        table.allowsSelectionDuringEditing = true
         table.delegate = self
         table.dataSource = self
         table.fullView(parent: self)
+        
         
         // Retireve tasks
         fetchTasks()
@@ -74,10 +76,34 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         
         // Fetch the tasks
         do {
-            self.tasks =  try Core.context.fetch(fetch)
+            self.tasks = try Core.context.fetch(fetch)
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    // MARK: Task Actions
+    func deleteTask(task: Task) {
+        // Delete the task
+        Core.context.delete(task)
+        
+        do {
+            // Save changes
+            try Core.context.save()
+            
+            // Delete from local class
+            guard let index = self.tasks.firstIndex(of: task) else { return }
+            self.tasks.remove(at: index)
+            
+            // Update table
+            table.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func archiveTask() {
+        print("Archive")
     }
     
     // MARK: Table View  Methods
@@ -98,6 +124,22 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let task = tasks[indexPath.row]
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.deleteTask(task: task)
+        }
+        
+        let archive = UITableViewRowAction(style: .normal, title: "Archive") { (action, indexPath) in
+            self.archiveTask()
+        }
+        
+        archive.backgroundColor = UIColor.App.success
+        
+        return [delete, archive]
     }
 }
 
