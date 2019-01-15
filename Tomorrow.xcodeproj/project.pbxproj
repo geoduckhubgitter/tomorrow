@@ -29,6 +29,7 @@
 		D538E44921E8037000780799 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E44821E8037000780799 /* Range.swift */; };
 		D538E44B21E815A300780799 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E44A21E815A300780799 /* Table.swift */; };
 		D538E44D21E818ED00780799 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E44C21E818ED00780799 /* TaskCell.swift */; };
+		D5AD5F5121ED793400C91D53 /* ArchiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AD5F5021ED793400C91D53 /* ArchiveController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D538E44821E8037000780799 /* Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		D538E44A21E815A300780799 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		D538E44C21E818ED00780799 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		D5AD5F5021ED793400C91D53 /* ArchiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				D538E40421E686AC00780799 /* TasksController.swift */,
 				D538E42A21E6BB6A00780799 /* NewTaskController.swift */,
 				D538E43821E6DAB500780799 /* SettingsController.swift */,
+				D5AD5F5021ED793400C91D53 /* ArchiveController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				D538E42B21E6BB6A00780799 /* NewTaskController.swift in Sources */,
 				D538E42421E6B91400780799 /* Stack.swift in Sources */,
 				D538E44721E7FF5F00780799 /* Button.swift in Sources */,
+				D5AD5F5121ED793400C91D53 /* ArchiveController.swift in Sources */,
 				D538E44321E7F94500780799 /* Label.swift in Sources */,
 				D538E42921E6BB3000780799 /* Task+CoreDataProperties.swift in Sources */,
 				D538E43F21E7F36900780799 /* Textarea.swift in Sources */,

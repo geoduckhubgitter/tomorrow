@@ -12,6 +12,7 @@ import CoreData
 
 class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     // UI Elements
+    var archive = false
     let label = UILabel()
     let table = Table()
     var tasks = [Task]()
@@ -19,7 +20,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     
     // Settings
     let resetTime = UserDefaults.standard.float(forKey: "reset")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +35,6 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         table.delegate = self
         table.dataSource = self
         table.fullView(parent: self)
-        
         
         // Retireve tasks
         fetchTasks()
@@ -69,10 +69,11 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         guard let start = calendar.date(byAdding: .hour, value: addition, to: today) else { return }
         
         // All tasks after start time
-        let datePredicate = NSPredicate(format: "date > %@", start as NSDate)
+        let predicateString = archive ? "date > %@ && complete == true" : "date > %@ && complete == false"
+        let predicate = NSPredicate(format: predicateString, start as NSDate)
         
         // Add time constraint to fetch request
-        fetch.predicate = datePredicate
+        fetch.predicate = predicate
         
         // Fetch the tasks
         do {
@@ -102,8 +103,23 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func archiveTask() {
-        print("Archive")
+    func toggleTask(task: Task) {
+        // Set it to the oppisite
+        task.complete = !task.complete
+        
+        do {
+            // Save changes
+            try Core.context.save()
+            
+            // Delete from local class
+            guard let index = self.tasks.firstIndex(of: task) else { return }
+            self.tasks.remove(at: index)
+            
+            // Update table
+            table.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     // MARK: Table View  Methods
@@ -129,17 +145,31 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let task = tasks[indexPath.row]
         
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            self.deleteTask(task: task)
+        if archive {
+            let putBack = UITableViewRowAction(style: .normal, title: "Put Back") { (action, indexPath) in
+                self.toggleTask(task: task)
+            }
+            
+            let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+                self.deleteTask(task: task)
+            }
+            
+            putBack.backgroundColor = UIColor.App.success
+            
+            return [delete, putBack]
+        } else {
+            let archive = UITableViewRowAction(style: .normal, title: "Archive") { (action, indexPath) in
+                self.toggleTask(task: task)
+            }
+        
+            archive.backgroundColor = UIColor.App.success
+        
+            return [archive]
         }
-        
-        let archive = UITableViewRowAction(style: .normal, title: "Archive") { (action, indexPath) in
-            self.archiveTask()
-        }
-        
-        archive.backgroundColor = UIColor.App.success
-        
-        return [delete, archive]
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
 }
 
