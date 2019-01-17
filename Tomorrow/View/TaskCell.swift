@@ -37,18 +37,18 @@ class TaskCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
-        label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -69).isActive = true
+        label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -65).isActive = true
         label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         label.heightAnchor.constraint(equalToConstant: 70).isActive = true
         label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
         // Setup priority icon
         priority.translatesAutoresizingMaskIntoConstraints = false
-        priority.widthAnchor.constraint(equalToConstant: 14).isActive = true
-        priority.heightAnchor.constraint(equalToConstant: 14).isActive = true
+        priority.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        priority.heightAnchor.constraint(equalToConstant: 10).isActive = true
         priority.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
         priority.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        priority.layer.cornerRadius = 7
+        priority.layer.cornerRadius = 5
         
         // Default colror
         priority.backgroundColor = UIColor.HSB(hue: 0, saturation: 50, brightness: 100)

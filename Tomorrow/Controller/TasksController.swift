@@ -38,9 +38,17 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         
         // Retireve tasks
         fetchTasks()
+        
+        // Refetch on restore
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: nil) { _ in
+            self.fetchTasks()
+        }
+        
+        // Update every 2 minutes (So they'll reset if open through reset time)
+        Timer.scheduledTimer(timeInterval: 120.0, target: self, selector: #selector(fetchTasks), userInfo: nil, repeats: true)
     }
     
-    func fetchTasks() {
+    @objc func fetchTasks() {
         // The fetch request
         let fetch:NSFetchRequest = Task.fetchRequest()
         
@@ -156,7 +164,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
             
             putBack.backgroundColor = UIColor.App.success
             
-            return [delete, putBack]
+            return [putBack, delete]
         } else {
             let archive = UITableViewRowAction(style: .normal, title: "Archive") { (action, indexPath) in
                 self.toggleTask(task: task)
