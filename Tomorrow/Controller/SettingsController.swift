@@ -97,8 +97,14 @@ class SettingsController: Layout {
     }
     
     @objc func handleSave() {
+        // Round to hour
+        let rounded = round(resetInput.value)
+        
         // Save it to user default
-        UserDefaults.standard.set(round(resetInput.value), forKey: "reset")
+        UserDefaults.standard.set(rounded, forKey: "reset")
+        
+        // Update notification
+        Notify.shared.createNotification(hour: rounded)
         
         // Redirect home
         navigationController?.pushViewController(TasksController(), animated: true)

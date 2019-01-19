@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -25,12 +26,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let resetTime = defaults.float(forKey: "reset")
         if resetTime == 0.0 { defaults.set(20.0, forKey: "reset") }
         
+        // Notifications
+        setupNotifications(hour: resetTime)
+
         // Bypass storyboard
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(rootViewController: TasksController())
         
         return true
+    }
+    
+    func setupNotifications(hour: Float) {
+        let center = UNUserNotificationCenter.current()
+
+        center.requestAuthorization(options: [.sound, .alert]) { (granted, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            // Notifications Approved
+            center.delegate = self
+            
+            // Set recurring notification
+            Notify.shared.createNotification(hour: hour)
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
