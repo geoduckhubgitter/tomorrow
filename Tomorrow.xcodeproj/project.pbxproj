@@ -29,6 +29,7 @@
 		D538E44921E8037000780799 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E44821E8037000780799 /* Range.swift */; };
 		D538E44B21E815A300780799 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E44A21E815A300780799 /* Table.swift */; };
 		D538E44D21E818ED00780799 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D538E44C21E818ED00780799 /* TaskCell.swift */; };
+		D59129D121F2E545004F37AD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59129D021F2E545004F37AD /* Notifications.swift */; };
 		D5AD5F5121ED793400C91D53 /* ArchiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AD5F5021ED793400C91D53 /* ArchiveController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		D538E44821E8037000780799 /* Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		D538E44A21E815A300780799 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		D538E44C21E818ED00780799 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		D59129D021F2E545004F37AD /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		D5AD5F5021ED793400C91D53 /* ArchiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				D538E41C21E6B7B100780799 /* Core.swift */,
+				D59129D021F2E545004F37AD /* Notifications.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			files = (
 				D538E43B21E7E73A00780799 /* Input.swift in Sources */,
 				D538E44B21E815A300780799 /* Table.swift in Sources */,
+				D59129D121F2E545004F37AD /* Notifications.swift in Sources */,
 				D538E40521E686AC00780799 /* TasksController.swift in Sources */,
 				D538E44D21E818ED00780799 /* TaskCell.swift in Sources */,
 				D538E42221E6B8F400780799 /* Colors.swift in Sources */,
