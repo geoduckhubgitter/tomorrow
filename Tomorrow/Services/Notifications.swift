@@ -28,7 +28,13 @@ class Notify {
         
         // Create a trigger time
         var dateComponents = DateComponents()
-        dateComponents.hour = Int(hour)
+        let hourInt = Int(hour)
+        
+        if (hourInt == 24) {
+            dateComponents.hour = 0
+        } else {
+            dateComponents.hour = hourInt
+        }
         
         // Create a trigger
         let trigger  = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
