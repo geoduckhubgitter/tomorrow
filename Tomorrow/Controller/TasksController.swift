@@ -49,7 +49,11 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         Timer.scheduledTimer(timeInterval: 120.0, target: self, selector: #selector(fetchTasks), userInfo: nil, repeats: true)
     }
     
-    @objc func fetchTasks() {        
+    @objc func fetchTasks() {
+        // Was not resetting on reopen at set time for whatever reason :(
+        self.tasks = [Task]()
+        table.reloadData()
+        
         // The fetch request
         let fetch:NSFetchRequest = Task.fetchRequest()
         
@@ -78,7 +82,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         guard let start = calendar.date(byAdding: .hour, value: addition, to: today) else { return }
         
         // All tasks after start time
-        let predicateString = archive ? "date >= %@ && complete == true" : "date >= %@ && complete == false"
+        let predicateString = archive ? "date > %@ && complete == true" : "date > %@ && complete == false"
         let predicate = NSPredicate(format: predicateString, start as NSDate)
         
         // Add time constraint to fetch request
