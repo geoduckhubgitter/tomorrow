@@ -17,7 +17,20 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud" translatesAutoresizingMaskIntoConstraints="NO" id="lWO-Wu-Exd">
+                                <rect key="frame" x="67.5" y="279.5" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="6uZ-pw-fYc"/>
+                                    <constraint firstAttribute="height" constant="128" id="YM3-M0-uXP"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36862745098039218" green="0.25098039215686274" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lWO-Wu-Exd" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="5os-PX-aNa"/>
+                            <constraint firstItem="lWO-Wu-Exd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yHI-Os-cEy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -26,4 +39,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cloud" width="200" height="164"/>
+    </resources>
 </document>
