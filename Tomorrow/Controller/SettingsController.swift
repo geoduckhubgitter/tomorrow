@@ -41,7 +41,7 @@ class SettingsController: Layout {
     }
     
     func setupView() {
-        resetInfo.text = "This is the time you're daily todos will self destruct and we'll remind you to add tomorrows. We recommand setting this just before your bed time."
+        resetInfo.text = "This is the time your todos will self destruct and we'll remind you to add tomorrows. We recommend setting this to just before your bed time."
         
         // Center hour
         selected.textAlignment = .center
