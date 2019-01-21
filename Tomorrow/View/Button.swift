@@ -8,9 +8,7 @@
 
 import UIKit
 
-class Button: UIButton {
-    let button = UIButton()
-    
+class Button: UIButton {    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
