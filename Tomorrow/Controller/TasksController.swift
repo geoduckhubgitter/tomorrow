@@ -50,10 +50,6 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func fetchTasks() {
-        // Was not resetting on reopen at set time for whatever reason :(
-        self.tasks = [Task]()
-        table.reloadData()
-        
         // The fetch request
         let fetch:NSFetchRequest = Task.fetchRequest()
         
@@ -94,6 +90,9 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         } catch {
             print(error.localizedDescription)
         }
+        
+        // Reload
+        table.reloadData()
     }
     
     // MARK: Task Actions
