@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
     struct App {
         static var background: UIColor  { return UIColor.Hex(hex: "ffffff") }
-        static var primary: UIColor  { return UIColor.Hex(hex: "5E40BD") }
+        static var primary: UIColor  { return UIColor.Hex(hex: "5636BD") }
         static var primaryText: UIColor  { return UIColor.Hex(hex: "ffffff") }
         static var primaryTextActive: UIColor  { return UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5) }
         static var text: UIColor  { return UIColor.Hex(hex: "121212") }
