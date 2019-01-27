@@ -17,6 +17,8 @@ class ArchiveController: TasksController {
         self.init(nibName: nil, bundle: nil)
         
         super.archive = true
+        // Setup navbar
+        super.navTitle = "Archive"
 
     }
     

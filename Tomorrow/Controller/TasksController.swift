@@ -18,6 +18,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
     let table = Table()
     var tasks = [Task]()
     let cellId = "taskCell"
+    var navTitle = "Tasks"
     
     // Settings
     let resetTime = UserDefaults.standard.float(forKey: "reset")
@@ -28,7 +29,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         view.addSubview(table)
     
         // Setup navbar
-        navigationItem.title = "Tasks"
+        navigationItem.title = navTitle
     
         // Tableview Settings
         table.register(TaskCell.self, forCellReuseIdentifier: cellId)
