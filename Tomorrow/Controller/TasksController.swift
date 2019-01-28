@@ -79,7 +79,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         guard let start = calendar.date(byAdding: .hour, value: addition, to: today) else { return }
         
         // All tasks after start time
-        let predicateString = archive ? "date > %@ && complete == true" : "date > %@ && complete == false"
+        let predicateString = archive ? "date < %@ || complete == true" : "date > %@ && complete == false"
         let predicate = NSPredicate(format: predicateString, start as NSDate)
         
         // Add time constraint to fetch request
@@ -152,7 +152,6 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
             let dateFormatterPrint = DateFormatter()
             dateFormatterPrint.dateFormat = "MMM dd, yyyy"
             cell.addSublabel(text: dateFormatterPrint.string(from: task.date as Date))
-        
         }
         
         return cell
