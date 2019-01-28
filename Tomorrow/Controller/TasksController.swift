@@ -116,9 +116,15 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func toggleTask(task: Task) {
-        // Set it to the oppisite
-        task.complete = !task.complete
+    func toggleTask(task: Task, archive:Bool = false) {
+        if archive {
+            task.complete = false
+            
+            // Reset date to bring back from expired
+            task.date = NSDate()
+        } else {
+            task.complete = true
+        }
         
         do {
             // Save changes
@@ -166,7 +172,7 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         
         if archive {
             let putBack = UITableViewRowAction(style: .normal, title: "Put Back") { (action, indexPath) in
-                self.toggleTask(task: task)
+                self.toggleTask(task: task, archive: true)
             }
             
             let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in

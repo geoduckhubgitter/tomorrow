@@ -48,6 +48,6 @@
     </scenes>
     <resources>
         <image name="launch_bg" width="1400" height="2600"/>
-        <image name="launch_logo" width="898" height="898"/>
+        <image name="launch_logo" width="500" height="505"/>
     </resources>
 </document>
