@@ -9,7 +9,9 @@
 import UIKit
 
 class TaskCell: UITableViewCell {
+    let labels = Stack(spacing: 2)
     let label = Label()
+    let subLabel = Label()
     let priority = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,19 +31,21 @@ class TaskCell: UITableViewCell {
         self.layoutMargins = UIEdgeInsets.zero
         
         backgroundColor = UIColor.white
-
-        self.addSubview(label)
-        self.addSubview(priority)
         
+        self.addSubview(labels)
+        self.addSubview(priority)
+        labels.addArrangedSubview(label)
+        
+        // Labels
+        labels.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -65).isActive = true
+        labels.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        labels.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+
         // Label overrides
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
-        label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -65).isActive = true
-        label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
+
         // Setup priority icon
         priority.translatesAutoresizingMaskIntoConstraints = false
         priority.widthAnchor.constraint(equalToConstant: 10).isActive = true
@@ -52,6 +56,17 @@ class TaskCell: UITableViewCell {
         
         // Default colror
         priority.backgroundColor = UIColor.HSB(hue: 0, saturation: 50, brightness: 100)
+    }
+    
+    func addSublabel(text: String) {
+        // SubLabel overrides
+        subLabel.textColor = UIColor.App.lightText
+        subLabel.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        subLabel.numberOfLines = 1
+        subLabel.lineBreakMode = .byTruncatingTail
+        subLabel.text = text
+        
+        labels.addArrangedSubview(subLabel)
     }
     
     func setPriorityColor(priorityFloat: Float) {

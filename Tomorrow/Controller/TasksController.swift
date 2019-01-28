@@ -148,6 +148,13 @@ class TasksController: Layout, UITableViewDelegate, UITableViewDataSource {
         cell.label.text = task.title
         cell.setPriorityColor(priorityFloat: task.priority)
         
+        if archive {
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "MMM dd, yyyy"
+            cell.addSublabel(text: dateFormatterPrint.string(from: task.date as Date))
+        
+        }
+        
         return cell
     }
     
